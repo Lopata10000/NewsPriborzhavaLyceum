@@ -79,26 +79,6 @@ END IF;
 END
 $$;
 
--- Створення таблиці "Повідомлення", якщо вона не існує
-DO
-$$
-BEGIN
-        IF
-NOT EXISTS (SELECT FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'messages') THEN
-CREATE TABLE messages
-(
-    id             SERIAL PRIMARY KEY,
-    sender_id      INT       NOT NULL,
-    receiver_id    INT       NOT NULL,
-    message_date   TIMESTAMP NOT NULL,
-    message_text   TEXT      NOT NULL,
-    message_status VARCHAR(50),
-    CONSTRAINT fk_sender FOREIGN KEY (sender_id) REFERENCES users (id),
-    CONSTRAINT fk_receiver FOREIGN KEY (receiver_id) REFERENCES users (id)
-);
-END IF;
-END
-$$;
 
 -- Створення таблиці "Статистика", якщо вона не існує
 DO
@@ -112,9 +92,9 @@ CREATE TABLE statistics
     stat_date         DATE NOT NULL,
     request_count     INT,
     participant_count INT,
-    event_type_count  INT,
+    event_type_count  INT
     -- Додайте тут інші показники аналітики, якщо потрібно
-    CONSTRAINT fk_event_type FOREIGN KEY (event_type_count) REFERENCES event_types (id)
+
 );
 END IF;
 END
