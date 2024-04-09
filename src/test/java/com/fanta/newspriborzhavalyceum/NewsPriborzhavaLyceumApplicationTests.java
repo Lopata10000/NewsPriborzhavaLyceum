@@ -1,4 +1,4 @@
-package com.example.newspriborzhavalyceum;
+package com.fanta.newspriborzhavalyceum;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

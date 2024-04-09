@@ -5,16 +5,16 @@ DATABASE news_priborzhava_lyceum;
 -- Створення таблиці "Ролі", якщо вона не існує
 DO
 $$
-BEGIN
-        IF
-NOT EXISTS (SELECT FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'roles') THEN
-CREATE TABLE roles
-(
-    id   SERIAL PRIMARY KEY,
-    name VARCHAR(50) UNIQUE NOT NULL
-);
-END IF;
-END
+    BEGIN
+        IF NOT EXISTS (SELECT FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'roles') THEN
+            CREATE TYPE role_enum AS ENUM ('admin', 'школяр', 'підліток', 'старшокласник', 'інший');
+            CREATE TABLE roles
+            (
+                id SERIAL PRIMARY KEY,
+                name role_enum UNIQUE NOT NULL
+            );
+        END IF;
+    END
 $$;
 
 -- Створення таблиці "Користувачі", якщо вона не існує
@@ -30,8 +30,7 @@ CREATE TABLE users
     email        VARCHAR(100) UNIQUE NOT NULL,
     password     VARCHAR(255)        NOT NULL,
     role_id      INT                 NOT NULL,
-    phone_number VARCHAR(20),
-    address      VARCHAR(255),
+    date_of_birth DATE,
     CONSTRAINT fk_role FOREIGN KEY (role_id) REFERENCES roles (id)
 );
 END IF;
