@@ -1,6 +1,12 @@
 package com.fanta.newspriborzhavalyceum;
 
+import com.fanta.newspriborzhavalyceum.database.entity.User;
+import com.fanta.newspriborzhavalyceum.database.service.UserService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @org.springframework.stereotype.Controller
 public class NewsPriborzhavaLyceumController {

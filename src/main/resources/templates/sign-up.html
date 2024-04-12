@@ -41,23 +41,23 @@
                 <h2>Account activated</h2></div>
             <p>Your account was created successfully. You can now log in by navigating to the link below.</p><a
                 href="/log-in" class="button w-button">Go to login</a></div>
-        <form method="post" data-wf-user-form-type="signup">
+        <form id="user-form">
             <div class="w-users-userformheader form-card-header"><h2 class="heading h3">Sign up</h2></div>
-            <input id="wf-sign-up-email" placeholder="Your email" maxlength="256" name="Email"
+            <input id="wf-sign-up-email" placeholder="Your email" maxlength="256" name="email"
                    class="text-field w-input" type="email" autoComplete="username" required=""
-                   data-wf-user-form-input-type="email"/><input class="text-field w-input" maxlength="256" name=""
+                   data-wf-user-form-input-type="email"/><input class="text-field w-input" maxlength="256" name="name"
                                                                 data-name="field"
                                                                 data-wf-user-field="wf-user-field-name"
                                                                 placeholder="Your full name" fieldType="" type="text"
                                                                 id="wf-sign-up-name" required=""/><input
-                id="wf-sign-up-password" placeholder="Your password" maxlength="256" name="Password"
+                id="wf-sign-up-password" placeholder="Your password" maxlength="256" name="password"
                 class="text-field w-input" type="password" required="" data-wf-user-form-input-type="password"/><label
-                class="w-checkbox checkbox-field"><input class="w-checkbox-input check-box" name="Checkbox"
+                class="w-checkbox checkbox-field"><input class="w-checkbox-input check-box" name="acceptPrivacy"
                                                          data-name="Checkbox"
                                                          data-wf-user-field="wf-user-field-accept-privacy"
                                                          placeholder="" type="checkbox" id="wf-sign-up-accept-privacy"
                                                          required=""/><span class="checkbox-label w-form-label"
-                                                                            for="Checkbox">I agree to this website&#x27;s <a
+                                                                            for="Checkbox">I agree to this website's <a
                 href="/privacy-policy" target="_blank">privacy policy</a> and <a href="/terms-conditions"
                                                                                  target="_blank">terms of service</a></span></label><input
                 type="submit" data-wait="Please wait..." class="w-users-userformbutton button w-button"
@@ -65,6 +65,30 @@
             <div class="w-users-userformfooter form-card-footer"><span>Already have an account?</span><a href="/log-in">Log
                 In</a></div>
         </form>
+        <script> const form = document.getElementById('user-form');
+        form.addEventListener('submit', (event) => {
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'http://example.com/api/endpoint', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            event.preventDefault();
+            var data = {
+                name: 'John',
+                age: 25
+            };
+            xhr.send(JSON.stringify(data));
+            const formData = new FormData(form);
+            const formJson = Object.fromEntries(formData.entries());
+
+            delete formJson.acceptPrivacy;
+
+            const jsonString = JSON.stringify(formJson);
+
+            fetch('/api/users', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: jsonString
+            });
+        }); </script>
         <div style="display:none" data-wf-user-form-error="true" class="w-users-userformerrorstate w-form-fail">
             <div class="user-form-error-msg"
                  wf-signup-form-general-error-error="There was an error signing you up. Please try again, or contact us if you continue to have problems."

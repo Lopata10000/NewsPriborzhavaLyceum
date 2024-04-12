@@ -3,20 +3,28 @@ package com.fanta.newspriborzhavalyceum.database.service;
 import com.fanta.newspriborzhavalyceum.database.entity.User;
 import com.fanta.newspriborzhavalyceum.database.repository.UserRepository;
 import javax.persistence.EntityNotFoundException;
+
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@AllArgsConstructor
 @Service
-public class UserService {
-
+public class UserService implements UserDetailsService {
+    private final static String USER_NOT_FOUND_MSG =
+            "користувача &s поштою не знайдено ";
     private final UserRepository userRepository;
-
-    @Autowired
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    @Override
+    public UserDetails loadUserByUsername(String email)
+            throws UsernameNotFoundException {
+        return userRepository.findAllByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, email)));
     }
 
     public User createUser(User user) {
@@ -31,13 +39,17 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public UserRepository getUserRepository() {
+        return userRepository;
+    }
+
     public User updateUser(User user) {
         return userRepository.findById(user.getId())
                 .map(existingUser -> {
                     existingUser.setName(user.getName());
                     existingUser.setEmail(user.getEmail());
                     existingUser.setPassword(user.getPassword());
-                    existingUser.setRoleId(user.getRoleId());
+                    existingUser.setRole(user.getRole());
                     return userRepository.save(existingUser);
                 })
                 .orElseThrow(() -> new EntityNotFoundException("User with id " + user.getId() + " not found"));
@@ -45,4 +57,6 @@ public class UserService {
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
+
+
 }
