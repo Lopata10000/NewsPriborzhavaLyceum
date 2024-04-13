@@ -7,8 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-@Transactional(readOnly = true)
 @Repository
-public interface UserRepository  extends JpaRepository<User, Long> {
-Optional<User> findAllByEmail(String email);
+public interface UserRepository  extends JpaRepository<User, Integer> {
+Optional<User> findByEmail(String email);
+
 }

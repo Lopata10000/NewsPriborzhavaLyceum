@@ -16,22 +16,17 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @Service
-public class UserService implements UserDetailsService {
+public class UserService {
     private final static String USER_NOT_FOUND_MSG =
             "користувача &s поштою не знайдено ";
     private final UserRepository userRepository;
-    @Override
-    public UserDetails loadUserByUsername(String email)
-            throws UsernameNotFoundException {
-        return userRepository.findAllByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, email)));
-    }
+
 
     public User createUser(User user) {
         return userRepository.save(user);
     }
 
-    public Optional<User> getUserById(Long id) {
+    public Optional<User> getUserById(Integer id) {
         return userRepository.findById(id);
     }
 
@@ -54,7 +49,7 @@ public class UserService implements UserDetailsService {
                 })
                 .orElseThrow(() -> new EntityNotFoundException("User with id " + user.getId() + " not found"));
     }
-    public void deleteUser(Long id) {
+    public void deleteUser(Integer id) {
         userRepository.deleteById(id);
     }
 
