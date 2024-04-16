@@ -1,6 +1,8 @@
 package com.fanta.newspriborzhavalyceum.database.controller;
 
 import com.fanta.newspriborzhavalyceum.database.entity.User;
+import com.fanta.newspriborzhavalyceum.database.exception.ApiException;
+import com.fanta.newspriborzhavalyceum.database.exception.EmailAlreadyExistsException;
 import com.fanta.newspriborzhavalyceum.database.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +25,7 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user) {
+
         User createdUser = userService.createUser(user);
         return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
     }

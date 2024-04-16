@@ -1,11 +1,15 @@
 package com.fanta.newspriborzhavalyceum.database.service;
 
 import com.fanta.newspriborzhavalyceum.database.entity.User;
+import com.fanta.newspriborzhavalyceum.database.exception.EmailAlreadyExistsException;
 import com.fanta.newspriborzhavalyceum.database.repository.UserRepository;
 import javax.persistence.EntityNotFoundException;
 
+import com.fanta.newspriborzhavalyceum.database.validation.ErrorMessage;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -23,6 +27,9 @@ public class UserService {
 
 
     public User createUser(User user) {
+        if (!isEmailUnique(user.getEmail())) {
+            throw new EmailAlreadyExistsException("Email address is already in use");
+        }
         return userRepository.save(user);
     }
 
@@ -51,6 +58,9 @@ public class UserService {
     }
     public void deleteUser(Integer id) {
         userRepository.deleteById(id);
+    }
+    public boolean isEmailUnique(String email) {
+        return !userRepository.findByEmail(email).isPresent();
     }
 
 

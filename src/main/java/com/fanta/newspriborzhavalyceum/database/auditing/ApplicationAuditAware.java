@@ -1,4 +1,4 @@
-package com.fanta.newspriborzhavalyceum.auditing;
+package com.fanta.newspriborzhavalyceum.database.auditing;
 
 import com.fanta.newspriborzhavalyceum.database.entity.User;
 import org.springframework.data.domain.AuditorAware;

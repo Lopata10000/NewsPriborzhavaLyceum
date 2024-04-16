@@ -1,7 +1,7 @@
 package com.fanta.newspriborzhavalyceum.database.config;
 
 
-import com.fanta.newspriborzhavalyceum.auditing.ApplicationAuditAware;
+import com.fanta.newspriborzhavalyceum.database.auditing.ApplicationAuditAware;
 import com.fanta.newspriborzhavalyceum.database.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

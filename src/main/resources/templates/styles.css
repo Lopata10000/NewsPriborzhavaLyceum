@@ -1,0 +1,10 @@
+#dateOfBirth {
+    border: none;   /* прибирає рамку */
+}
+#error-message {
+    background-color: #ffcccc; /* Червоний фон */
+    color: #ffffff; /* Білий текст */
+    border-radius: 10px; /* Завкруглені краї */
+    padding: 10px; /* Відступи всередині */
+}
+

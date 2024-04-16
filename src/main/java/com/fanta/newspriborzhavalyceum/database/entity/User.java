@@ -20,7 +20,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "users")
+@Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = {"email"})})
 public class User implements UserDetails {
 
     @Id
@@ -47,7 +47,7 @@ public class User implements UserDetails {
     private Role role = Role.admin;
 
     @Column(name = "date_of_birth")
-    private Date dateOfBirth = Date.valueOf(LocalDate.of(2024, 4, 7));
+    private Date dateOfBirth ;
 
     private Boolean locked;
     private Boolean enable;
