@@ -6,10 +6,11 @@
     <title>Priborzhavsky-Lyceum-News</title>
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <meta content="Webflow" name="generator"/>
-    <link rel="stylesheet" href="styles.css">
+
 
     <link href="https://assets-global.website-files.com/6610606930da13b8a528a088/css/priborzhavsky-lyceum-news.webflow.cf64f3824.css"
           rel="stylesheet" type="text/css"/>
+    <link  rel="stylesheet" th:href="@{/css/style.css}">
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous"/>
 
@@ -40,7 +41,7 @@
                    placeholder="Ваше повне ім'я" type="text" id="name" pattern="[A-Za-zА-Яа-яЁёЇїІіЄєҐґ\s']{3,}"
                    title="Будь ласка, введіть тільки літери і більше за 2 символи." required>
 
-            <input placeholder="Ваш email" id="email" maxlength="256" name="email"
+            <input placeholder="Ваша електронна адреса" id="email" maxlength="256" name="email"
                    class="text-field w-input" type="email" autoComplete="email"
                    data-wf-user-form-input-type="email" required/>
 
@@ -50,11 +51,6 @@
                     data-wf-user-form-input-type="password"/>
             <div class="center">
                 <input type="date" id="dateOfBirth" name="dateOfBirth" min="1917-01-01" max="2019-12-31" required>
-                <style>
-                    #dateOfBirth {
-                        border: none;
-                    }
-                </style>
             </div>
             <label
                 class="w-checkbox checkbox-field"><input
@@ -70,7 +66,6 @@
         </form>
         <script>
             const form = document.getElementById('user-form');
-            const errorMessageElement = document.getElementById('error-message');
 
             form.addEventListener('submit', (event) => {
                 event.preventDefault();
@@ -82,7 +77,8 @@
                     data: JSON.stringify(Object.fromEntries(formData)),
                     contentType: "application/json",
                     success: function(response) {
-                        // Опрацювання успішної відповіді
+                        window.location.href = "/resources";
+
                     },
                     error: function(xhr, textStatus, errorThrown) {
                         showError(xhr.responseText);
@@ -91,9 +87,14 @@
             });
 
             function showError(responseText) {
+
                 const error = JSON.parse(responseText);
                 const errorMessage = error.message;
                 document.getElementById('error-message').innerText = errorMessage;
+                document.getElementById('error-message').style.display = 'block'
+                setTimeout(() => {
+                    document.getElementById('error-message').style.display = 'none';
+                }, 5000);
             }
         </script>
 
@@ -106,7 +107,7 @@
                 <h2>Verification Required</h2></div>
             <p>Account verification required. Please check your email to find your unique verification link.</p></div>
     </div>
-    <div id="error-message"></div>
+    <div id="error-message" style="display: none"></div>
 
 </div>
 

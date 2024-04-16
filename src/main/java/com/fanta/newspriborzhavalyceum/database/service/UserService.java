@@ -28,8 +28,9 @@ public class UserService {
 
     public User createUser(User user) {
         if (!isEmailUnique(user.getEmail())) {
-            throw new EmailAlreadyExistsException("Email address is already in use");
+            throw new EmailAlreadyExistsException("Електронна адреса уже використовується.");
         }
+
         return userRepository.save(user);
     }
 

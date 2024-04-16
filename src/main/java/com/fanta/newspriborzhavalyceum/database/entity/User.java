@@ -44,7 +44,7 @@ public class User implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
-    private Role role = Role.admin;
+    private Role role = Role.ADMIN;
 
     @Column(name = "date_of_birth")
     private Date dateOfBirth ;

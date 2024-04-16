@@ -1,0 +1,13 @@
+#dateOfBirth {
+    border: none; /* прибирає рамку */
+}
+
+#error-message {
+    text-align: center;
+    color: white;
+    background-color: red;
+    padding: 10px;
+    border-radius: 5px;
+    width: 300px;
+}
+
