@@ -10,7 +10,7 @@
 
     <link href="https://assets-global.website-files.com/6610606930da13b8a528a088/css/priborzhavsky-lyceum-news.webflow.cf64f3824.css"
           rel="stylesheet" type="text/css"/>
-    <link  rel="stylesheet" th:href="@{/css/style.css}">
+    <link  rel="stylesheet" href="/css/style.css">
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous"/>
 
@@ -23,7 +23,7 @@
 
 </head>
 <body>
-<div class="w-users-userformpagewrap full-page-wrapper"><a href="/" class="form-page-logo-link w-inline-block"><img
+<div class="w-users-userformpagewrap full-page-wrapper"><a href="/static" class="form-page-logo-link w-inline-block"><img
         src="https://assets-global.website-files.com/6610606930da13b8a528a088/66140af03f8c32883aef947f_lopata5000_logo_for_Ukrainian_Lyceum_5ea0e4bf-ead1-4fb0-840f-99e9c661a819__1_-removebg-preview.png"
         loading="lazy" alt="" class="form-page-logo"/></a>
     <div class="w-users-usersignupformwrapper admin-form-card">
@@ -33,7 +33,7 @@
                     alt="" class="icon"/>
                 <h2>Account activated</h2></div>
             <p>Your account was created successfully. You can now log in by navigating to the link below.</p><a
-                href="/log-in" class="button w-button">Go to login</a></div>
+                href="/html/log-in.html" class="button w-button">Go to login</a></div>
         <form id="user-form">
             <div class="w-users-userformheader form-card-header"><h2 class="heading h3">Реєстрація</h2></div>
             <input class="text-field w-input" maxlength="256" name="name" data-name="field"
@@ -64,38 +64,8 @@
             <div class="w-users-userformfooter form-card-footer"><span>Уже маєте аккаунт</span><a
                     href="/log-in">Увійти</a></div>
         </form>
-        <script>
-            const form = document.getElementById('user-form');
+        <script  src="/scripts/sign-up.js">
 
-            form.addEventListener('submit', (event) => {
-                event.preventDefault();
-                const formData = new FormData(form);
-
-                $.ajax({
-                    type: "POST",
-                    url: "/api/users",
-                    data: JSON.stringify(Object.fromEntries(formData)),
-                    contentType: "application/json",
-                    success: function(response) {
-                        window.location.href = "/resources";
-
-                    },
-                    error: function(xhr, textStatus, errorThrown) {
-                        showError(xhr.responseText);
-                    }
-                });
-            });
-
-            function showError(responseText) {
-
-                const error = JSON.parse(responseText);
-                const errorMessage = error.message;
-                document.getElementById('error-message').innerText = errorMessage;
-                document.getElementById('error-message').style.display = 'block'
-                setTimeout(() => {
-                    document.getElementById('error-message').style.display = 'none';
-                }, 5000);
-            }
         </script>
 
 

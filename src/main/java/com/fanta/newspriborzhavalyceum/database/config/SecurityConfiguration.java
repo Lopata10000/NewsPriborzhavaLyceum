@@ -24,11 +24,11 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 public class SecurityConfiguration {
 
     private static final String[] WHITE_LIST_URL = {"/",
-            "/error",
-            "/resources",
-            "/sign-up",
-            "/log-in",
-            "/home"};
+            "/html/error.html",
+            "/html/resources.html",
+            "/html/sign-up.html",
+            "/html/log-in.html",
+            "/html/home.html"};
 
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
@@ -44,6 +44,7 @@ public class SecurityConfiguration {
                                 .requestMatchers(HttpMethod.POST, "/api/users").permitAll() // Allow POST requests to /registration endpoint
                                 .requestMatchers(HttpMethod.POST, "/api/authentication").permitAll() // Allow POST requests to /registration endpoint
                                 .requestMatchers("/css/**").permitAll() // Allow all requests to /css/**
+                                .requestMatchers("/scripts/**").permitAll()
                                 .anyRequest()
                                 .authenticated()
                 )

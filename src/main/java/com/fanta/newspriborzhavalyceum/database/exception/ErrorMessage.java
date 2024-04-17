@@ -1,4 +1,4 @@
-package com.fanta.newspriborzhavalyceum.database.validation;
+package com.fanta.newspriborzhavalyceum.database.exception;
 
 public class ErrorMessage {
     private String message;
