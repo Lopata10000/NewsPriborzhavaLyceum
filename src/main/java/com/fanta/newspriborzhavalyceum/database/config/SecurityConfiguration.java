@@ -7,7 +7,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,8 +14,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 
-
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
+
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -28,7 +27,9 @@ public class SecurityConfiguration {
             "/html/resources.html",
             "/html/sign-up.html",
             "/html/log-in.html",
-            "/html/home.html"};
+            "/html/home.html",
+            "/html/test.html",
+            "/api/events"};
 
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
@@ -43,8 +44,12 @@ public class SecurityConfiguration {
                         req.requestMatchers(WHITE_LIST_URL).permitAll() // Permit all requests to the root URL
                                 .requestMatchers(HttpMethod.POST, "/api/users").permitAll() // Allow POST requests to /registration endpoint
                                 .requestMatchers(HttpMethod.POST, "/api/authentication").permitAll() // Allow POST requests to /registration endpoint
+                                .requestMatchers(HttpMethod.GET, "/api/events").permitAll() // Allow POST requests to /registration endpoint
+                                .requestMatchers(HttpMethod.POST, "/api/events").permitAll() // Allow POST requests to /registration endpoint
+                                .requestMatchers(HttpMethod.GET, "/api/event-places").permitAll() // Allow POST requests to /registration endpoint
                                 .requestMatchers("/css/**").permitAll() // Allow all requests to /css/**
                                 .requestMatchers("/scripts/**").permitAll()
+                                .requestMatchers("/image/**").permitAll()
                                 .anyRequest()
                                 .authenticated()
                 )

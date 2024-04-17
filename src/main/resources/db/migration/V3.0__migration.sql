@@ -16,62 +16,46 @@ $$
         END IF;
     END
 $$;
+DO
+$$
+BEGIN
+        IF NOT EXISTS (SELECT FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'events') THEN
+CREATE TABLE events
+(
+    id                     SERIAL PRIMARY KEY,
+    event_name             VARCHAR(255) NOT NULL,
+    event_date             DATE         NOT NULL,
+    event_time             TIME         NOT NULL,
+    place_address VARCHAR(255) NOT NULL ,
+    number_of_participants INT          NOT NULL,
+    event_description      TEXT,
+    organizer_contact_info VARCHAR(255),
+    access_type            VARCHAR(20)
+);
 
--- Створення таблиці "Місця заходів", якщо вона не існує
+END IF;
+END
+$$;
 DO
 $$
     BEGIN
         IF NOT EXISTS (SELECT FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'event_places') THEN
-            CREATE TABLE event_places
+            CREATE TABLE applications
             (
-                id            SERIAL PRIMARY KEY,
-                place_name    VARCHAR(255) NOT NULL,
-                place_address VARCHAR(255),
-                capacity      INT,
-                accessibility BOOLEAN
-            );
+                id             SERIAL PRIMARY KEY,
+                event_id       INT          NOT NULL,
+                user_id        INT          NOT NULL,
+                applicant_name VARCHAR(255) NOT NULL,
+                status         VARCHAR(20)  DEFAULT 'Pending',
+                note           TEXT,
+                CONSTRAINT fk_event FOREIGN KEY (event_id) REFERENCES events (id),
+                CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users (id));
         END IF;
     END
 $$;
 
 -- Створення таблиці "Заходи", якщо вона не існує
-DO
-$$
-    BEGIN
-        IF NOT EXISTS (SELECT FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'events') THEN
-            CREATE TABLE events
-            (
-                id                     SERIAL PRIMARY KEY,
-                event_name             VARCHAR(255) NOT NULL,
-                event_date             DATE         NOT NULL,
-                event_time             TIME         NOT NULL,
-                place_id               INT          NOT NULL,
-                number_of_participants INT          NOT NULL,
-                event_description      TEXT,
-                organizer_contact_info VARCHAR(255),
-                access_type            VARCHAR(20),
-                CONSTRAINT fk_place FOREIGN KEY (place_id) REFERENCES event_places (id)
-            );
-        END IF;
-    END
-$$;
 
--- Створення таблиці "Місця заходів", якщо вона не існує (дублювання)
-DO
-$$
-    BEGIN
-        IF NOT EXISTS (SELECT FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'event_places') THEN
-            CREATE TABLE event_places
-            (
-                id            SERIAL PRIMARY KEY,
-                place_name    VARCHAR(255) NOT NULL,
-                place_address VARCHAR(255),
-                capacity      INT,
-                accessibility BOOLEAN
-            );
-        END IF;
-    END
-$$;
 
 -- Створення таблиці "Статистика", якщо вона не існує
 DO

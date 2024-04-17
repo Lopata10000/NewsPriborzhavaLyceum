@@ -32,7 +32,10 @@ public class EventService {
                     existingEvent.setEventName(event.getEventName());
                     existingEvent.setEventDate(event.getEventDate());
                     existingEvent.setEventTime(event.getEventTime());
-                    // Додаткові оновлення, якщо необхідно
+                    existingEvent.setAccessType(event.getAccessType());
+                    existingEvent.setNumberOfParticipants(event.getNumberOfParticipants());
+                    existingEvent.setPlaceAddress(event.getPlaceAddress());
+
                     return eventRepository.save(existingEvent);
                 })
                 .orElseThrow(() -> new EntityNotFoundException("Event with id " + event.getId() + " not found"));

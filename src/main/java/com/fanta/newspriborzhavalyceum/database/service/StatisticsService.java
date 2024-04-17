@@ -34,7 +34,7 @@ public class StatisticsService {
                     existingStatistics.setRequestCount(statistics.getRequestCount());
                     existingStatistics.setParticipantCount(statistics.getParticipantCount());
                     existingStatistics.setEventTypeCount(statistics.getEventTypeCount());
-                    // Інші оновлення для таблиці statistics
+
                     return statisticsRepository.save(existingStatistics);
                 })
                 .orElseThrow(() -> new EntityNotFoundException("Statistics with id " + statistics.getId() + " not found"));
