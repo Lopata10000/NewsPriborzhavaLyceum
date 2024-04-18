@@ -6,7 +6,7 @@ form.addEventListener('submit', (event) => {
 
     $.ajax({
         type: "POST",
-        url: "/api/events/create",
+        url: "/api/events/new",
         data: JSON.stringify(Object.fromEntries(formData)),
         contentType: "application/json",
         success: function (response) {
@@ -14,18 +14,7 @@ form.addEventListener('submit', (event) => {
 
         },
         error: function (xhr, textStatus, errorThrown) {
-            showError(xhr.responseText);
         }
     });
 });
 
-function showError(responseText) {
-
-    const error = JSON.parse(responseText);
-    const errorMessage = error.message;
-    document.getElementById('error-message').innerText = errorMessage;
-    document.getElementById('error-message').style.display = 'block'
-    setTimeout(() => {
-        document.getElementById('error-message').style.display = 'none';
-    }, 5000);
-}

@@ -45,5 +45,5 @@ public class Event {
     private String organizerContactInfo;
 
     @Column(name = "access_type", length = 20)
-    private String accessType;
+    private String accessType = "public";
 }

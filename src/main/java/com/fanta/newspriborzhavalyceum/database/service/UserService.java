@@ -45,7 +45,7 @@ public class UserService {
                     existingUser.setName(user.getName());
                     existingUser.setEmail(user.getEmail());
                     existingUser.setPassword(user.getPassword());
-                    existingUser.setRole(user.getRole());
+                    existingUser.setUserRole(user.getUserRole());
                     return userRepository.save(existingUser);
                 })
                 .orElseThrow(() -> new EntityNotFoundException("User with id " + user.getId() + " not found"));

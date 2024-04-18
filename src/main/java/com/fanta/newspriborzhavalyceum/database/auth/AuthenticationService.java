@@ -40,7 +40,7 @@ public class AuthenticationService {
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .dateOfBirth(Date.valueOf(request.getDateOfBirth()))
-                .role(Role.ADMIN)
+                .userRole(Role.USER)
                 .build();
         var savedUser = userService.createUser(user);
         var jwtToken = jwtService.generateToken(user);

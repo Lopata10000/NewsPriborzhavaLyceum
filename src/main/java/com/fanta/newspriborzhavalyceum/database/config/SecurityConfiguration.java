@@ -14,6 +14,11 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 
+import static com.fanta.newspriborzhavalyceum.database.entity.Permission.*;
+import static com.fanta.newspriborzhavalyceum.database.entity.Role.ADMIN;
+import static com.fanta.newspriborzhavalyceum.database.entity.Role.MANAGER;
+import static org.springframework.http.HttpMethod.*;
+import static org.springframework.http.HttpMethod.DELETE;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 @Configuration
@@ -29,7 +34,10 @@ public class SecurityConfiguration {
             "/html/log-in.html",
             "/html/home.html",
             "/html/test.html",
-            "/api/events"};
+            "/api/events",
+            "/api/events/new",
+            "/html/new-event.html",
+    };
 
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
@@ -45,8 +53,11 @@ public class SecurityConfiguration {
                                 .requestMatchers(HttpMethod.POST, "/api/users").permitAll() // Allow POST requests to /registration endpoint
                                 .requestMatchers(HttpMethod.POST, "/api/authentication").permitAll() // Allow POST requests to /registration endpoint
                                 .requestMatchers(HttpMethod.GET, "/api/events").permitAll() // Allow POST requests to /registration endpoint
-                                .requestMatchers(HttpMethod.POST, "/api/events").permitAll() // Allow POST requests to /registration endpoint
-                                .requestMatchers(HttpMethod.GET, "/api/event-places").permitAll() // Allow POST requests to /registration endpoint
+                                .requestMatchers(POST, "/api/events/new").permitAll() // Allow POST requests to /registration endpoint
+//                                .requestMatchers(GET, "/html/new-event.html").hasAnyAuthority(ADMIN_CREATE.name())
+//                                .requestMatchers(POST, "/html/new-event.html").hasAnyAuthority(ADMIN_READ.name())
+//                                .requestMatchers(PUT, "/html/new-event.html").hasAnyAuthority(ADMIN_UPDATE.name())
+//                                .requestMatchers(DELETE, "/api/v1/management/**").hasAnyAuthority(ADMIN_DELETE.name())
                                 .requestMatchers("/css/**").permitAll() // Allow all requests to /css/**
                                 .requestMatchers("/scripts/**").permitAll()
                                 .requestMatchers("/image/**").permitAll()

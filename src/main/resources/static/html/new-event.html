@@ -76,22 +76,20 @@
                     src="https://assets-global.website-files.com/6610606930da13b8a528a088/6610606a30da13b8a528a169_Design%20Resources%20Home.svg"
                     loading="lazy" width="155" id="w-node-_65bf0f1e-5469-458e-011a-2918fe1af152-a528a145" alt=""/></div>
             <div class="w-form">
-                <form id="user-form" name="wf-form-Event-Form" data-name="Event Form" method="post"
+                <form id="user-form"
                       class="form-2" data-wf-page-id="6610606a30da13b8a528a145"
                       data-wf-element-id="0744ef99-6d4f-4c41-7fd6-8227175b4fc9"><label for="name">Назва
-                    події</label><input class="w-input" maxlength="256" name="name" data-name="Name" placeholder=""
-                                        type="text" id="name"/><label for="email">Дата події</label><input
-                        class="w-input" maxlength="256" name="email" data-name="Email" placeholder="" type="email"
-                        id="email" required=""/><label for="email-2">Час</label><input class="w-input" maxlength="256"
-                                                                                       name="email-2"
-                                                                                       data-name="Email 2"
-                                                                                       placeholder="" type="email"
-                                                                                       id="email-2" required=""/><label
-                        for="email-3">Адреса</label><input class="w-input" maxlength="256" name="email-2"
-                                                           data-name="Email 2" placeholder="" type="email" id="email-2"
-                                                           required=""/><label for="email-3">Контакти
-                    організаторів</label><input class="w-input" maxlength="256" name="email-2" data-name="Email 2"
-                                                placeholder="" type="email" id="email-2" required=""/><input
+                    події</label><input class="text-field w-input" name="eventName" id="eventName"/><label for="email">Дата події</label><input
+                        class="w-input" id="eventDate" type="date" name="eventDate" required=""/><label for="email-2">Час</label><input class="w-input"  type="time"
+                                                                                       id="eventTime" name="eventTime" required=""/><label
+                        for="email-3">Адреса</label><!--<input class="text-field w-input" name="placeAddress"  id="placeAddress"
+                                                           required=""/>--><label for="email-3">Контакти
+                    організаторів</label><input class="text-field w-input"
+                                                 id="organizerContactInfo" name="organizerContactInfo" required=""/>
+                    <label for="email-3">Опис</label><input class="text-field w-input" name="eventDescription" id="eventDescription" required=""/>
+                    <label for="email-3">Кількість учасників</label><input class="text-field w-input" name="numberOfParticipants" id="numberOfParticipants" required=""/>
+                    <label for="email-3">Тип доступу</label><input class="text-field w-input" name="accessType" id="accessType" required=""/>
+                    <label for="email-3">Опис</label><input class="text-field w-input" name="eventDescription" id="eventDescription" required=""/><input
                         type="submit" data-wait="Зачекайте..." class="submit-button w-button" value="Створити"/></form>
                 <script  src="/scripts/new-event.js">
 

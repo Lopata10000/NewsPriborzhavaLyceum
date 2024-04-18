@@ -13,7 +13,6 @@ import static com.fanta.newspriborzhavalyceum.database.entity.Permission.*;
 
 @RequiredArgsConstructor
 public enum Role {
-
   USER(Collections.emptySet()),
   ADMIN(
           Set.of(

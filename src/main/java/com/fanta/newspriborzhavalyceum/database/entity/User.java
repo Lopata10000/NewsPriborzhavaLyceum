@@ -42,9 +42,10 @@ public class User implements UserDetails {
     @Column(name = "password", nullable = false, length = 255)
     private String password;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "role", nullable = false)
-    private Role role = Role.ADMIN;
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "user_role", nullable = false)
+
+    private Role userRole;
 
     @Column(name = "date_of_birth")
     private Date dateOfBirth ;
@@ -54,7 +55,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));
+        return List.of(new SimpleGrantedAuthority(userRole.name()));
     }
 
     @Override
