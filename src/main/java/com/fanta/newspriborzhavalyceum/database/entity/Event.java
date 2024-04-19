@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalTime;
 
 @Data
 @NoArgsConstructor
@@ -27,7 +28,7 @@ public class Event {
     private Date eventDate;
 
     @Column(name = "event_time", nullable = false)
-    private Time eventTime;
+    private LocalTime eventTime;
 
     @Column(name = "number_of_participants", nullable = false)
     private int numberOfParticipants = 0;

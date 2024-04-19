@@ -1,5 +1,9 @@
 const form = document.getElementById('user-form');
-<a href="/html/access-denied.html" />
+var eventTime = document.getElementById('eventTime').value;
+var moment = window.moment; // use the global Moment.js object
+
+var formattedEventTime = moment(eventTime, 'HH:mm').format('HH:mm:ss'); // format as HH:mm:ss
+var data = { "eventTime": formattedEventTime };
 
 form.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -12,11 +16,9 @@ form.addEventListener('submit', (event) => {
         contentType: "application/json",
         success: function (response) {
             window.location.href = "/html/resources.html";
-
         },
         error: function (xhr, textStatus, errorThrown) {
-            <a href="/html/access-denied.html" />
+            // handle error
         }
     });
 });
-

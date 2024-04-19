@@ -1,5 +1,6 @@
 package com.fanta.newspriborzhavalyceum.database.config;
 
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +15,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 
-import static org.springframework.http.HttpMethod.POST;
+import static org.springframework.http.HttpMethod.*;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 @Configuration
@@ -30,9 +31,6 @@ public class SecurityConfiguration {
             "/html/log-in.html",
             "/html/home.html",
             "/html/test.html",
-            "/api/events",
-            "/api/events/new",
-            "/html/new-event.html",
             "/html/access-denied.html",
     };
 
@@ -49,8 +47,8 @@ public class SecurityConfiguration {
                         req.requestMatchers(WHITE_LIST_URL).permitAll() // Permit all requests to the root URL
                                 .requestMatchers(HttpMethod.POST, "/api/users").permitAll() // Allow POST requests to /registration endpoint
                                 .requestMatchers(HttpMethod.POST, "/api/authentication").permitAll() // Allow POST requests to /registration endpoint
-                                .requestMatchers(HttpMethod.GET, "/api/events").permitAll() // Allow POST requests to /registration endpoint
-                                .requestMatchers(POST, "/api/events/new").permitAll() // Allow POST requests to /registration endpoint
+                                .requestMatchers(HttpMethod.POST, "/api/events").permitAll() // Allow POST requests to /registration endpoint
+
                                 .requestMatchers("/css/**").permitAll() // Allow all requests to /css/**
                                 .requestMatchers("/scripts/**").permitAll()
                                 .requestMatchers("/image/**").permitAll()
