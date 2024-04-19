@@ -3,11 +3,10 @@ package com.fanta.newspriborzhavalyceum.database.service;
 import com.fanta.newspriborzhavalyceum.database.entity.User;
 import com.fanta.newspriborzhavalyceum.database.exception.CustomAuthenticationException;
 import com.fanta.newspriborzhavalyceum.database.repository.UserRepository;
-import javax.persistence.EntityNotFoundException;
-
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,16 +49,18 @@ public class UserService {
                 })
                 .orElseThrow(() -> new EntityNotFoundException("User with id " + user.getId() + " not found"));
     }
+
     public void deleteUser(Integer id) {
         userRepository.deleteById(id);
     }
- /*   public Optional<User> findByEmail(String email) {
-        if (isEmailPresent(email)) {
-            return userRepository.findByEmail(email);
-        } else {
-            throw new EmailAlreadyExistsException("Електронна адреса уже використовується.");
-        }
-    }*/
+
+    /*   public Optional<User> findByEmail(String email) {
+           if (isEmailPresent(email)) {
+               return userRepository.findByEmail(email);
+           } else {
+               throw new EmailAlreadyExistsException("Електронна адреса уже використовується.");
+           }
+       }*/
     public boolean isEmailPresent(String email) {
         return !userRepository.findByEmail(email).isPresent();
     }

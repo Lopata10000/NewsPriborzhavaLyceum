@@ -1,9 +1,9 @@
 package com.fanta.newspriborzhavalyceum.database.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import com.fanta.newspriborzhavalyceum.database.entity.Event;
 import com.fanta.newspriborzhavalyceum.database.repository.EventRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
@@ -26,6 +26,7 @@ public class EventService {
     public Event createEvent(Event event) {
         return eventRepository.save(event);
     }
+
     public Event updateEvent(Event event) {
         return eventRepository.findById(event.getId())
                 .map(existingEvent -> {
@@ -40,6 +41,7 @@ public class EventService {
                 })
                 .orElseThrow(() -> new EntityNotFoundException("Event with id " + event.getId() + " not found"));
     }
+
     public void deleteEventById(Long id) {
         eventRepository.deleteById(id);
     }

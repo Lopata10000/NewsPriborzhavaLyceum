@@ -16,6 +16,7 @@ public class StatisticsDTO {
         this.participantCount = participantCount;
         this.eventTypeCount = eventTypeCount;
     }
+
     public Long getId() {
         return id;
     }

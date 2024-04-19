@@ -1,9 +1,9 @@
 package com.fanta.newspriborzhavalyceum.database.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import com.fanta.newspriborzhavalyceum.database.entity.Statistics;
 import com.fanta.newspriborzhavalyceum.database.repository.StatisticsRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
@@ -39,6 +39,7 @@ public class StatisticsService {
                 })
                 .orElseThrow(() -> new EntityNotFoundException("Statistics with id " + statistics.getId() + " not found"));
     }
+
     public void deleteStatisticsById(Long id) {
         statisticsRepository.deleteById(id);
     }

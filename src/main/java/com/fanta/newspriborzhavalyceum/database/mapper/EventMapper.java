@@ -1,10 +1,10 @@
 package com.fanta.newspriborzhavalyceum.database.mapper;
 
+import com.fanta.newspriborzhavalyceum.database.dto.EventDTO;
+import com.fanta.newspriborzhavalyceum.database.entity.Event;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
-import com.fanta.newspriborzhavalyceum.database.dto.EventDTO;
-import com.fanta.newspriborzhavalyceum.database.entity.Event;
 
 @Mapper
 public interface EventMapper {

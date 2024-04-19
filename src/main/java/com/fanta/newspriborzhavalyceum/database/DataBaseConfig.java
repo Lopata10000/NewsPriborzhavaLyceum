@@ -1,12 +1,20 @@
 package com.fanta.newspriborzhavalyceum.database;
 
-/** The interface Data base config. */
+/**
+ * The interface Data base config.
+ */
 public interface DataBaseConfig {
-    /** The constant url. */
+    /**
+     * The constant url.
+     */
     String url = "jdbc:postgresql://localhost:5433/news-priborzhava-lyceum";
-    /** The constant user. */
+    /**
+     * The constant user.
+     */
     String user = "postgres";
-    /** The constant password. */
+    /**
+     * The constant password.
+     */
     String password = "45435";
 
 

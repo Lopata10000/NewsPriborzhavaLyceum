@@ -14,13 +14,13 @@ public class Faker {
 
         try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5433/news-priborzhava-lyceum", "postgres", "45435")) {
             // Заповнення таблиці "Користувачі"
-            String insertUserSql = "INSERT INTO users (name, email, password, role, date_of_birth) VALUES (?, ?, ?, ?, ?)";
+            String insertUserSql = "INSERT INTO users (name, email, password, user_role, date_of_birth) VALUES (?, ?, ?, ?, ?)";
             try (PreparedStatement userStatement = connection.prepareStatement(insertUserSql)) {
                 for (int i = 0; i < 10; i++) {
                     userStatement.setString(1, faker.name().fullName());
                     userStatement.setString(2, faker.internet().emailAddress());
                     userStatement.setString(3, faker.internet().password());
-                    userStatement.setString(4, random.nextBoolean() ? "Admin" : "User");
+                    userStatement.setInt(4, faker.number().numberBetween(0, 2));
                     userStatement.setObject(5, faker.date().birthday().toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate());
                     userStatement.addBatch();
                 }

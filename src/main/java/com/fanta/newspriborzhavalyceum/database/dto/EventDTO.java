@@ -1,8 +1,6 @@
 package com.fanta.newspriborzhavalyceum.database.dto;
 
 import java.sql.Time;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.Date;
 
 public class EventDTO {

@@ -1,9 +1,9 @@
 package com.fanta.newspriborzhavalyceum.database.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import com.fanta.newspriborzhavalyceum.database.entity.Applications;
 import com.fanta.newspriborzhavalyceum.database.repository.ApplicationsRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
@@ -22,6 +22,7 @@ public class ApplicationsService {
     public Optional<Applications> getApplicationsById(Long id) {
         return applicationsRepository.findById(id);
     }
+
     public Applications updateApplications(Applications applications) {
         return applicationsRepository.findById(applications.getId())
                 .map(existingApplications -> {
@@ -35,6 +36,7 @@ public class ApplicationsService {
                 })
                 .orElseThrow(() -> new EntityNotFoundException("Applications with id " + applications.getId() + " not found"));
     }
+
     public Applications createApplications(Applications applications) {
         return applicationsRepository.save(applications);
     }

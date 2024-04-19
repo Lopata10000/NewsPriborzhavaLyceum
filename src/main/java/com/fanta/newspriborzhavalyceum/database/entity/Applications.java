@@ -30,7 +30,7 @@ public class Applications {
     @Column(name = "applicant_name", nullable = false, length = 255)
     private String applicantName;
 
-    @Column(name = "note",  length = 255)
+    @Column(name = "note", length = 255)
     private String note;
 
 

@@ -1,7 +1,6 @@
 package com.fanta.newspriborzhavalyceum.database.auth;
 
 import com.fanta.newspriborzhavalyceum.database.config.JwtService;
-import com.fanta.newspriborzhavalyceum.database.controller.UserController;
 import com.fanta.newspriborzhavalyceum.database.entity.Role;
 import com.fanta.newspriborzhavalyceum.database.entity.User;
 import com.fanta.newspriborzhavalyceum.database.exception.CustomAuthenticationException;
@@ -54,12 +53,12 @@ public class AuthenticationService {
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
         try {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        request.getEmail(),
-                        request.getPassword()
-                )
-        );
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            request.getEmail(),
+                            request.getPassword()
+                    )
+            );
         } catch (AuthenticationException e) {
             throw new CustomAuthenticationException("Не правильна електронна адреса або пароль.");
         }

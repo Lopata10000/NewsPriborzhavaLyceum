@@ -2,7 +2,9 @@ package com.fanta.newspriborzhavalyceum.database;
 
 import org.flywaydb.core.Flyway;
 
-/** The type Migration flyway. */
+/**
+ * The type Migration flyway.
+ */
 public class MigrationFlyway implements DataBaseConfig {
 
 

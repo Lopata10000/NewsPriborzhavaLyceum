@@ -1,4 +1,5 @@
 const form = document.getElementById('user-form');
+<a href="/html/access-denied.html" />
 
 form.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -14,6 +15,7 @@ form.addEventListener('submit', (event) => {
 
         },
         error: function (xhr, textStatus, errorThrown) {
+            <a href="/html/access-denied.html" />
         }
     });
 });

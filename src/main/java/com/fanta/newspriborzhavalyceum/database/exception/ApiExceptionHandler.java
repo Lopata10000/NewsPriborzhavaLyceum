@@ -1,4 +1,5 @@
 package com.fanta.newspriborzhavalyceum.database.exception;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -10,7 +11,7 @@ import java.time.ZonedDateTime;
 public class ApiExceptionHandler {
 
     @ExceptionHandler(CustomAuthenticationException.class)
-    public ResponseEntity<Object> handleEmailAlreadyExistsException(CustomAuthenticationException e){
+    public ResponseEntity<Object> handleEmailAlreadyExistsException(CustomAuthenticationException e) {
         HttpStatus badRequest = HttpStatus.BAD_REQUEST;
 
         ApiException apiException = new ApiException(
@@ -18,6 +19,6 @@ public class ApiExceptionHandler {
                 badRequest,
                 ZonedDateTime.now()
         );
-        return  new ResponseEntity<>(apiException, badRequest);
+        return new ResponseEntity<>(apiException, badRequest);
     }
 }

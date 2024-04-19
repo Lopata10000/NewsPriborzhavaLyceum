@@ -1,9 +1,9 @@
 package com.fanta.newspriborzhavalyceum.database.mapper;
 
-import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
 import com.fanta.newspriborzhavalyceum.database.dto.StatisticsDTO;
 import com.fanta.newspriborzhavalyceum.database.entity.Statistics;
+import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
 
 @Mapper
 public interface StatisticsMapper {

@@ -1,6 +1,6 @@
 package com.fanta.newspriborzhavalyceum.database.exception;
 
-public class CustomAuthenticationException extends RuntimeException{
+public class CustomAuthenticationException extends RuntimeException {
     public CustomAuthenticationException(String message) {
         super(message);
     }
