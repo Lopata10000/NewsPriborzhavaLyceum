@@ -1,0 +1,5 @@
+services:
+  - name: news-priborzhava-lyceum
+    env: docker
+    buildCommand: "docker build -t news-priborzhava-lyceum ."
+    startCommand: "docker run -p 8080:8080 news-priborzhava-lyceum"
