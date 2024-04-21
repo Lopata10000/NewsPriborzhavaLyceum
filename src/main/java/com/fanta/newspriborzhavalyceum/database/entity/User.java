@@ -52,8 +52,6 @@ public class User implements UserDetails {
     @Column(name = "date_of_birth")
     private Date dateOfBirth;
 
-    private Boolean locked;
-    private Boolean enable;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

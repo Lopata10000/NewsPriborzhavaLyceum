@@ -7,6 +7,9 @@ const app = new Vue({
     },
     methods: {
         async fetchEvents() {
+            const headers = {
+
+            };
             const response = await axios.get('/api/events');
             this.events = response.data; // Оновлення events з даними про події з сервера
 

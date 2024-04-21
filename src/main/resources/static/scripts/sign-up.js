@@ -9,23 +9,27 @@ form.addEventListener('submit', (event) => {
         url: "/api/users",
         data: JSON.stringify(Object.fromEntries(formData)),
         contentType: "application/json",
+
         success: function (response) {
+            var token = response.accessToken;
+
             window.location.href = "/html/resources.html";
 
         },
         error: function (xhr, textStatus, errorThrown) {
             showError(xhr.responseText);
         }
-    });
-});
+    })
 
-function showError(responseText) {
+        });
 
-    const error = JSON.parse(responseText);
-    const errorMessage = error.message;
-    document.getElementById('error-message').innerText = errorMessage;
-    document.getElementById('error-message').style.display = 'block'
-    setTimeout(() => {
-        document.getElementById('error-message').style.display = 'none';
-    }, 5000);
-}
+    function showError(responseText) {
+
+        const error = JSON.parse(responseText);
+        const errorMessage = error.message;
+        document.getElementById('error-message').innerText = errorMessage;
+        document.getElementById('error-message').style.display = 'block'
+        setTimeout(() => {
+            document.getElementById('error-message').style.display = 'none';
+        }, 5000);
+    }

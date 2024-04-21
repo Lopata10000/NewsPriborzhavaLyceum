@@ -12,7 +12,7 @@ public class Faker {
         com.github.javafaker.Faker faker = new com.github.javafaker.Faker();
         Random random = new Random();
 
-        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5433/news-priborzhava-lyceum", "postgres", "45435")) {
+        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://c3lej1b0k5gkeq.cluster-czz5s0kz4scl.eu-west-1.rds.amazonaws.com:5432/d4j1f76e5e8msg", "u42s7dvk2d0dk3", "pb4151b985538249e239748e1bf0e495a0a507e3fd07e501ab5906f8749af9734")) {
             // Заповнення таблиці "Користувачі"
             String insertUserSql = "INSERT INTO users (name, email, password, user_role, date_of_birth) VALUES (?, ?, ?, ?, ?)";
             try (PreparedStatement userStatement = connection.prepareStatement(insertUserSql)) {

@@ -47,7 +47,7 @@ public class SecurityConfiguration {
                         req.requestMatchers(WHITE_LIST_URL).permitAll() // Permit all requests to the root URL
                                 .requestMatchers(HttpMethod.POST, "/api/users").permitAll() // Allow POST requests to /registration endpoint
                                 .requestMatchers(HttpMethod.POST, "/api/authentication").permitAll() // Allow POST requests to /registration endpoint
-                                .requestMatchers(HttpMethod.POST, "/api/events").permitAll() // Allow POST requests to /registration endpoint
+                                .requestMatchers( "/api/events").permitAll() // Allow POST requests to /registration endpoint
 
                                 .requestMatchers("/css/**").permitAll() // Allow all requests to /css/**
                                 .requestMatchers("/scripts/**").permitAll()
