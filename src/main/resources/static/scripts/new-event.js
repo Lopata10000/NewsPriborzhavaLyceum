@@ -14,8 +14,13 @@ form.addEventListener('submit', (event) => {
         url: "/api/events/new",
         data: JSON.stringify(Object.fromEntries(formData)),
         contentType: "application/json",
+
         success: function (response) {
-            window.location.href = "/html/resources.html";
+            Swal.fire({
+                title: 'Створено нову подію.',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
         },
         error: function (xhr, textStatus, errorThrown) {
             // handle error

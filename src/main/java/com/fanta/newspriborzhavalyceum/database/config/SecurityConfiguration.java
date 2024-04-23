@@ -31,6 +31,7 @@ public class SecurityConfiguration {
             "/html/log-in.html",
             "/html/home.html",
             "/html/test.html",
+            "/html/application.html",
             "/html/access-denied.html",
     };
 
@@ -44,12 +45,16 @@ public class SecurityConfiguration {
 
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req ->
-                        req.requestMatchers(WHITE_LIST_URL).permitAll() // Permit all requests to the root URL
-                                .requestMatchers(HttpMethod.POST, "/api/users").permitAll() // Allow POST requests to /registration endpoint
-                                .requestMatchers(HttpMethod.POST, "/api/authentication").permitAll() // Allow POST requests to /registration endpoint
-                                .requestMatchers( "/api/events").permitAll() // Allow POST requests to /registration endpoint
+                        req.requestMatchers(WHITE_LIST_URL).permitAll()
+                                .requestMatchers(HttpMethod.POST, "/api/users").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/api/authentication").permitAll()
+                                .requestMatchers(HttpMethod.POST, "api/applications/create").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/api/events/new").permitAll()
+                                .requestMatchers( "/api/events").permitAll()
+                                .requestMatchers( "/html/new-event.html").permitAll()
+                                .requestMatchers( "/api/applications").permitAll()
 
-                                .requestMatchers("/css/**").permitAll() // Allow all requests to /css/**
+                                .requestMatchers("/css/**").permitAll()
                                 .requestMatchers("/scripts/**").permitAll()
                                 .requestMatchers("/image/**").permitAll()
                                 .anyRequest()

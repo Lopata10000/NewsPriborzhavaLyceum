@@ -13,6 +13,8 @@
 .ebook-box {
     max-height: 700px; /* Замініть значення на бажану максимальну висоту */
     overflow: scroll; /* Додайте прокрутку, якщо контент перевищує максимальну висоту */
-}
+}.nav-link.w-nav-link {
+     display: inline-block;
+ }
 
 

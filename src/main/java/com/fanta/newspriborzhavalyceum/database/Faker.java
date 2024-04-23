@@ -12,9 +12,9 @@ public class Faker {
         com.github.javafaker.Faker faker = new com.github.javafaker.Faker();
         Random random = new Random();
 
-        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://c3lej1b0k5gkeq.cluster-czz5s0kz4scl.eu-west-1.rds.amazonaws.com:5432/d4j1f76e5e8msg", "u42s7dvk2d0dk3", "pb4151b985538249e239748e1bf0e495a0a507e3fd07e501ab5906f8749af9734")) {
+        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://dpg-coimp0v79t8c738jtveg-a.frankfurt-postgres.render.com/news_priborzhava_lyceum_ovjj", "news_priborzhava_lyceum_ovjj_user", "k64wVI6AiGI1AORvQ8wJt1yVY8IXukbS")) {
             // Заповнення таблиці "Користувачі"
-            String insertUserSql = "INSERT INTO users (name, email, password, user_role, date_of_birth) VALUES (?, ?, ?, ?, ?)";
+          /*  String insertUserSql = "INSERT INTO users (name, email, password, user_role, date_of_birth) VALUES (?, ?, ?, ?, ?)";
             try (PreparedStatement userStatement = connection.prepareStatement(insertUserSql)) {
                 for (int i = 0; i < 10; i++) {
                     userStatement.setString(1, faker.name().fullName());
@@ -26,7 +26,7 @@ public class Faker {
                 }
                 userStatement.executeBatch();
             }
-
+*/
             // Заповнення таблиці "Заходи"
             String insertEventSql = "INSERT INTO events (event_name, event_date, event_time, place_address, number_of_participants, event_description, organizer_contact_info, access_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             try (PreparedStatement eventStatement = connection.prepareStatement(insertEventSql)) {

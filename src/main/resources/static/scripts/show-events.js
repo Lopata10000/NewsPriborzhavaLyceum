@@ -1,3 +1,4 @@
+
 const app = new Vue({
     el: '#app',
     data() {
@@ -7,19 +8,42 @@ const app = new Vue({
     },
     methods: {
         async fetchEvents() {
-            const headers = {
-
-            };
+            const headers = {};
             const response = await axios.get('/api/events');
-            this.events = response.data; // Оновлення events з даними про події з сервера
+            this.events = response.data;
 
         },
         async register(event) {
+            var token = localStorage.getItem('refreshToken');
+
+
             try {
-                await axios.post('https://your-api-url.com/register', event);
-                // Обробка успішної реєстрації
+                const eventId = event.id;
+
+                const applicationData = {
+                    eventId: eventId,
+                    userId: 1,
+                    applicantName: "Ім'я користувача",
+                    note: "Примітка про заявку"
+                };
+
+                const headers = {
+                    'Authorization': `Bearer ${token}`
+                };
+
+                await axios.post('/api/applications/create', applicationData, {
+                    headers: headers
+                });
+                Swal.fire({
+                    title: 'Ваша заявка надіслана.',
+                    text: 'Ваша заявка падіслана на розгляд',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+
             } catch (error) {
-                console.error(error);
+                window.location.href = "/html/access-denied.html";
+
             }
         }
     },

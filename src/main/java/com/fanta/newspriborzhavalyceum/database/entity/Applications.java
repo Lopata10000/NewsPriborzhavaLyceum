@@ -25,7 +25,7 @@ public class Applications {
 
 
     @Column(name = "status", nullable = false, length = 255)
-    private String status;
+    private String status = "сonsidered";
 
     @Column(name = "applicant_name", nullable = false, length = 255)
     private String applicantName;

@@ -23,6 +23,7 @@ public class ApplicationsController {
 
     @PostMapping("/create")
     public ResponseEntity<Applications> createApplications(@RequestBody Applications applications) {
+
         Applications createdApplications = applicationsService.createApplications(applications);
         return new ResponseEntity<>(createdApplications, HttpStatus.CREATED);
     }

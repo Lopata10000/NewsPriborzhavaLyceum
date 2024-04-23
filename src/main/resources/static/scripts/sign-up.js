@@ -11,9 +11,18 @@ form.addEventListener('submit', (event) => {
         contentType: "application/json",
 
         success: function (response) {
-            var token = response.accessToken;
-
-            window.location.href = "/html/resources.html";
+            const token = response.refresh_token;
+            localStorage.setItem('refreshToken', token);
+            localStorage.setItem('refreshToken', token);
+            Swal.fire({
+                title: 'Успішна реєстрація.',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "/html/resources.html";
+                }
+            });
 
         },
         error: function (xhr, textStatus, errorThrown) {

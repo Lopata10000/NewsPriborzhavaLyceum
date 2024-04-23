@@ -10,6 +10,8 @@
     <meta content="Webflow" name="generator"/>
     <link href="https://assets-global.website-files.com/6610606930da13b8a528a088/css/priborzhavsky-lyceum-news.webflow.3bb36fa17.css"
           rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous"/>
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
@@ -53,12 +55,17 @@
             </div>
             <div class="nav-menu"><a href="/html/resources.html" aria-current="page" class="nav-link w-nav-link w--current">Всі
                 події</a>
-                <button class="nav-link" data-wf-user-logout="Вийти" data-wf-user-login="Увійти" type="button"><a href="/html/log-in.html"
+                <button class="nav-link" id="loginButton" data-wf-user-login="Увійти" type="button"><a href="/html/log-in.html"
                                                                                                                   class="nav-link cta-button w-nav-link">Увійти</a>
                 </button>
             </div>
-            <div class="nav-cta-button-container"><a href="/html/sign-up.html"
+            <div class="nav-cta-button-container" id="signUpButton"><a href="/html/sign-up.html"
                                                      class="nav-link cta-button w-nav-link">Реєстрація</a></div>
+            <div class="nav-cta-button-container" id="applicationsButton" style="display: none" ><a href="/html/application.html"
+                                                     class="nav-link cta-button w-nav-link">Заявки</a></div>
+            <div class="nav-cta-button-container" id="newEventButton" style="display: none" ><a href="/html/new-event.html"
+                                                     class="nav-link cta-button w-nav-link">Нова подія</a></div>
+
         </nav>
         <div class="menu-button w-nav-button"><img
                 src="https://assets-global.website-files.com/6610606930da13b8a528a088/6610606a30da13b8a528a17c_Menu%20Icon.svg"
@@ -96,7 +103,7 @@
                             <p class="paragraph small"> Кількість учасників: {{ event.numberOfParticipants }}</p>
                         </a>
                         <footer class="card-footer">
-                            <a class="small-button w-button" href="/html/access-denied.html">
+                            <a @click="register(event)" class="small-button w-button" :data-event-id="event.id">
                                 Register
                             </a>
                         </footer>
@@ -105,12 +112,16 @@
             </div>
         </div>
     </div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="/scripts/show-events.js">
+    <script  src="/scripts/show-events.js">
+    <script  src="/scripts/checkToken.js">
 
     </script>
+
 </div>
     <div class="section black-gradient"></div>
 <div class="footer">
